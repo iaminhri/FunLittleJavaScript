@@ -1,0 +1,153 @@
+<html>
+	<header>
+		<title> Trie-State Button </title>
+
+		<style>
+			.canvas-container {
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+			}
+
+			.space {
+				padding: 10px;
+			}
+
+		</style>
+	</header>
+	<body>
+		<div class="canvas-container">
+			<button id="btn" onclick="tripleButton()" type="button"> Click Me </button>
+		</div>
+		<div class="space">
+		</div>
+		<div class="canvas-container">
+			<canvas id="triple" height="500px" width="500px" style="margin: auto; padding-top: 10%; border: 2px solid;"></canvas>
+		</div> 
+
+		<script>
+			var canva = document.getElementById("triple");
+			var ctx = canva.getContext("2d");
+
+			var canva2 = document.getElementById("triple");
+			var ctx2 = canva2.getContext("2d");
+
+			var canva3 = document.getElementById("triple");
+			var ctx3 = canva3.getContext("2d");
+
+			var canvaT = document.getElementById("triple");
+			var ctxT = canvaT.getContext("2d");
+
+			var getCanva = document.getElementById("btn");
+
+			window.onload = function tripleButton(){
+				var counter = 0;
+				getCanva.onclick = function(){
+					if(counter == 0){
+						getCanva.addEventListener("click", firstClick());
+					}
+					else if(counter == 1){
+						getCanva.addEventListener("click1", secondClick());
+					}
+					else if(counter == 2){
+						getCanva.addEventListener("click2", thirdClick());
+					}
+					else{
+						getCanva.addEventListener("click3", fourthClick());
+						counter = -1;
+					}
+					counter++;
+				}
+			}
+
+			function firstClick(){
+				//rectangle
+				ctx.beginPath();
+				ctx.lineWidth = "4";
+				ctx.rect(200, 150, 100, 100);
+				ctx.stroke();
+				ctx.closePath()
+
+				//triangle
+				ctxT.beginPath();
+				ctxT.lineWidth = "2";
+				ctxT.moveTo(200, 150);
+				ctxT.lineTo(250, 75);
+				ctxT.lineTo(300, 150);
+				ctxT.stroke();
+				ctxT.closePath();
+			}
+
+			function secondClick(){
+				//Window1
+				ctx2.beginPath();
+				ctx2.rect(205, 205, 20, 20);
+				ctx2.lineWidth = "1";
+				ctx2.stroke();
+				ctx2.closePath();
+
+				//Window2
+				ctx2.beginPath();
+				ctx2.rect(275, 205, 20, 20);
+				ctx2.lineWidth = "1";
+				ctx2.stroke();
+				ctx2.closePath();
+
+				//Door
+				ctx3.beginPath();
+				ctx3.rect(240, 200, 20, 40);
+				ctx3.lineWidth = "1";
+				ctx3.stroke();
+				ctx3.closePath();
+
+			}
+
+			function thirdClick(){
+				//triangle
+				ctxT.globalAlpha = 0.4;
+				ctxT.moveTo(200, 150);
+				ctxT.lineTo(250, 75);
+				ctxT.lineTo(300, 150);
+				ctxT.closePath();
+				ctxT.fillStyle = "yellow";
+				ctxT.fill();
+
+				ctxT.closePath();
+
+				//window1
+				ctx2.beginPath();
+				ctx2.globalAlpha = 0.4;
+				
+				ctx2.fillStyle = "red";
+				ctx2.fillRect(205, 205, 20, 20);
+				ctx2.closePath();
+				
+				//window2
+				ctx2.beginPath();
+				ctx2.globalAlpha = 0.4;
+				ctx2.fillStyle = "red";
+				ctx2.fillRect(275, 205, 20, 20);
+				ctx2.closePath();
+
+				//door
+				ctx3.beginPath();
+				ctx3.globalAlpha = 0.4;
+				ctx3.fillStyle = "black";
+				ctx3.fillRect(240, 200, 20, 40);
+				ctx3.closePath();
+
+				//House
+				ctx.beginPath();
+				ctx.globalAlpha = 0.4;
+				
+				ctx.closePath();
+				ctx.fllStyle = "yellow";
+				ctx.fillRect(200, 150, 100, 100);
+			}
+
+			function fourthClick(){
+				ctx.clearRect(0, 0, 500, 500);
+			}
+		</script>
+	</body>
+</html>
